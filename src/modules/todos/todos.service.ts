@@ -2,9 +2,10 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateTodoDTO } from './dto/createTodo-dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Todo } from './scheme/todo.scheme';
-import { GlobalErrorHandler } from 'src/core/error/global-error-handler';
+// import { GlobalErrorHandler } from 'src/core/error/global-error-handler';
 import { TodoResponseDto } from './dto/todo.response';
 import { UpdateTodoDTO } from './dto/updateTodo-dto';
+import { GlobalErrorHandler } from 'src/core/error/global-error-handler';
 
 @Injectable()
 export class TodosService {
@@ -18,10 +19,11 @@ export class TodosService {
         data: result.map((todo) => new TodoResponseDto(todo)),
       };
     } catch (error) {
-      GlobalErrorHandler.catch(error);
+      // GlobalErrorHandler.catch(error);
+      throw error;
     }
   }
-  
+
   async addTodo(userId: String, todoDto: CreateTodoDTO) {
     const todo = new this.todoModel({
       ...todoDto,

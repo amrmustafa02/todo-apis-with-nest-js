@@ -1,5 +1,10 @@
 {
     "version": 2,
+    "env": {
+        "DB_Url": "mongodb+srv://amr6051:amr2510@cluster0.c066e.mongodb.net/todo",
+        "PORT": "3000",
+        "JWT_SECRET": "amr2510"
+    },
     "builds": [
         {
             "src": "src/main.ts",
@@ -10,7 +15,7 @@
         {
             "src": "/(.*)",
             "dest": "src/main.ts",
-            "methods":[
+            "methods": [
                 "GET",
                 "POST",
                 "PATCH",
@@ -18,5 +23,4 @@
             ]
         }
     ]
-
 }
