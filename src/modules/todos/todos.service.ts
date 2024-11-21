@@ -21,6 +21,7 @@ export class TodosService {
       GlobalErrorHandler.catch(error);
     }
   }
+  
   async addTodo(userId: String, todoDto: CreateTodoDTO) {
     const todo = new this.todoModel({
       ...todoDto,

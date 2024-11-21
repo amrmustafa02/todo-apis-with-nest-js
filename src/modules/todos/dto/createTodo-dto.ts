@@ -1,4 +1,4 @@
-import { IsDate, IsDateString, IsOptional, MinLength } from 'class-validator';
+import { IsDateString, MinLength } from 'class-validator';
 
 export class CreateTodoDTO {
   @MinLength(3)
