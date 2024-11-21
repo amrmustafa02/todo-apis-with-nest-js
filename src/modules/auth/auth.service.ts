@@ -10,15 +10,14 @@ import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  await: any;
   constructor(
-    @InjectModel(User.name) private userModel,
+    @InjectModel(User.name) private userModel: any,
     private jwtService: JwtService,
   ) {}
 
   async login(loginDto: LoginDTO): Promise<GlobalResponse> {
     try {
-      var user = await this.userIsExist(loginDto.email);
+      var user = await this.getUser(loginDto.email);
 
       if (user == null) {
         throw new HttpException('User does not exist', HttpStatus.BAD_REQUEST);
@@ -38,6 +37,7 @@ export class AuthService {
 
       var token = await this.generateToken({
         id: user._id,
+        email: user.email,
       });
 
       return {
@@ -52,7 +52,7 @@ export class AuthService {
 
   async register(registerDto: RegisterDto): Promise<GlobalResponse> {
     try {
-      var user = await this.userIsExist(registerDto.email);
+      var user = await this.getUser(registerDto.email);
 
       if (user != null) {
         throw new HttpException('User already exist', HttpStatus.BAD_REQUEST);
@@ -97,7 +97,7 @@ export class AuthService {
     });
   }
 
-  private async userIsExist(email: String): Promise<any> {
+  private async getUser(email: String): Promise<any> {
     try {
       return await this.userModel.findOne({ email });
     } catch (error) {

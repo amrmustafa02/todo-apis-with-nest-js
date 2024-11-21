@@ -5,7 +5,6 @@ export class LoginDTO {
   @IsEmail()
   email: string;
 
-  //   @IsNotEmpty()
   @IsNotEmpty()
   @MinLength(8)
   @Matches(RegexService.password, { message: 'Password is must be strong' })
