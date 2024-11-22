@@ -19,14 +19,14 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document); // Swagger UI available at /api
+  SwaggerModule.setup('api-docs', app, document); // Swagger UI available at /api
 
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
     }),
   );
-  
+
 
   app.enableCors({
     origin: '*',
@@ -34,6 +34,8 @@ async function bootstrap() {
   });
 
   await app.listen(process.env.PORT ?? 3000);
+
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
 
 bootstrap();
