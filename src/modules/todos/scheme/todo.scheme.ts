@@ -29,6 +29,7 @@ export class Todo extends Document {
 
   @Prop({
     required: true,
+    // type: Schema.Types.ObjectId,
     type: String,
   })
   userId: string;

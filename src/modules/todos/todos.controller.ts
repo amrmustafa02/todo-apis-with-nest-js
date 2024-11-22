@@ -9,10 +9,10 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { AuthGuard } from 'src/core/guard/auth.guard';
 import { CreateTodoDTO } from './dto/createTodo-dto';
 import { TodosService } from './todos.service';
 import { UpdateTodoDTO } from './dto/updateTodo-dto';
+import { AuthGuard } from '../../core/guard/auth.guard';
 
 @Controller('todos')
 @UseGuards(AuthGuard)
@@ -29,7 +29,11 @@ export class TodosController {
   }
 
   @Patch('update/:id')
-  updateTodo(@Request() req, @Body() updateTodoDto: UpdateTodoDTO, @Param('id') todoId) {
+  updateTodo(
+    @Request() req,
+    @Body() updateTodoDto: UpdateTodoDTO,
+    @Param('id') todoId,
+  ) {
     return this.todosService.updateTodo(req.user.id, todoId, updateTodoDto);
   }
   @Delete('delete/:id')

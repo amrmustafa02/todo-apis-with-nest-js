@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { dot } from 'node:test/reporters';
 import * as dotenv from 'dotenv';
 
 async function bootstrap() {
@@ -14,7 +13,11 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
-  app.enableCors();
+
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  });
 
   await app.listen(process.env.PORT ?? 3000);
 }

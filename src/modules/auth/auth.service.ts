@@ -1,11 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { LoginDTO } from './dto/login-dto';
 import { RegisterDto } from './dto/register-dto';
-import { GlobalResponse } from 'src/core/dto/global.response';
+import { GlobalResponse } from '../../core/dto/global.response';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './scheme/user.scheme';
 import * as bcrypt from 'bcrypt';
-import { GlobalErrorHandler } from 'src/core/error/global-error-handler';
+import { GlobalErrorHandler } from '../../core/error/global-error-handler';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()

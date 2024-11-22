@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, Matches, MinLength } from 'class-validator';
-import { RegexService } from 'src/core/services/regex.service';
+import { RegexService } from '../../../core/services/regex.service';
 
 export class RegisterDto {
   @IsNotEmpty()
