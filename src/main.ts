@@ -26,11 +26,25 @@ async function bootstrap() {
     .setDescription('The Todo API ')
     .setVersion('1.0')
     .addBearerAuth()
+    .addServer('https://todo-apis-with-nest-js.vercel.app/')
     .build();
 
   const documentFactory = () => SwaggerModule.createDocument(app, config);
 
-  SwaggerModule.setup('docs', app, documentFactory);
+  SwaggerModule.setup('docs', app, documentFactory, {
+    customCss: `
+      .swagger-ui .opblock .opblock-summary-path-description-wrapper { 
+        align-items: center; 
+        display: flex; 
+        flex-wrap: wrap; 
+        gap: 0 10px; 
+        padding: 0 10px; 
+        width: 100%; 
+      }
+    `,
+    customCssUrl:
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css',
+  });
 
   await app.listen(process.env.PORT ?? 3000);
 
