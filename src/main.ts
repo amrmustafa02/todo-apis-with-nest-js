@@ -9,7 +9,7 @@ async function bootstrap() {
   dotenv.config();
 
   const app = await NestFactory.create(AppModule);
-  
+
   // Swagger configuration
   const config = new DocumentBuilder()
     .setTitle('Todo API') // API title
@@ -26,6 +26,7 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
+  
 
   app.enableCors({
     origin: '*',
