@@ -10,28 +10,27 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
 
-  // Swagger configuration
-  const config = new DocumentBuilder()
-    .setTitle('Todo API') // API title
-    .setDescription('API documentation for the Todo application') // Description
-    .setVersion('1.0') // API version
-    .addBearerAuth() // Add Bearer Token authentication
-    .build();
-
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-docs', app, document); // Swagger UI available at /api
-
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
     }),
   );
 
-
   app.enableCors({
     origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   });
+
+  const config = new DocumentBuilder()
+    .setTitle('Todo API')
+    .setDescription('API documentation for the Todo application')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+
+  SwaggerModule.setup('api-docs', app, document);
 
   await app.listen(process.env.PORT ?? 3000);
 
