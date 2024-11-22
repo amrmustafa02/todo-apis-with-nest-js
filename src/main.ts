@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import * as dotenv from 'dotenv';
+import { GlobalErrorHandler } from './core/error/global-error-handler';
 
 async function bootstrap() {
   dotenv.config();
