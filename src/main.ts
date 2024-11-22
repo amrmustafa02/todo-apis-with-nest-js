@@ -22,15 +22,15 @@ async function bootstrap() {
   });
 
   const config = new DocumentBuilder()
-    .setTitle('Todo API')
-    .setDescription('API documentation for the Todo application')
+    .setTitle('Todo App')
+    .setDescription('The Todo API ')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
 
-  const document = SwaggerModule.createDocument(app, config);
+  const documentFactory = () => SwaggerModule.createDocument(app, config);
 
-  SwaggerModule.setup('api-docs', app, document);
+  SwaggerModule.setup('docs', app, documentFactory);
 
   await app.listen(process.env.PORT ?? 3000);
 

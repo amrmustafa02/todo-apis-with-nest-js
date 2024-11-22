@@ -13,11 +13,18 @@ import { CreateTodoDTO } from './dto/createTodo-dto';
 import { TodosService } from './todos.service';
 import { UpdateTodoDTO } from './dto/updateTodo-dto';
 import { AuthGuard } from '../../core/guard/auth.guard';
-import { ApiOperation, ApiResponse, ApiTags, ApiParam } from '@nestjs/swagger';
+import {
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  ApiParam,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 
 @Controller('todos')
 @UseGuards(AuthGuard)
-@ApiTags('Todos') // Group all endpoints under 'Todos' in Swagger
+@ApiTags('Todos')
+@ApiBearerAuth()
 export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
